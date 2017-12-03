@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { ProgrammeService } from '../../../services';
 
 import * as Joi from 'joi';
+import {Programme} from '../../../interfaces/programme';
 
 @Route({
     path: '/api/programme/{id}',
@@ -21,16 +22,16 @@ import * as Joi from 'joi';
 export class DeleteOneProgrammeRoute implements OnDelete {
     /**
      * Class constructor
-     * @param _peopleService
+     * @param programmeService
      */
-    constructor(private _peopleService: ProgrammeService) {
+    constructor(private programmeService: ProgrammeService) {
     }
 
     /**
      * OnDelete implementation
      * @param request
      */
-    onDelete(request: Request): Observable<void> {
-        return this._peopleService.delete(request.params.id);
+    onDelete(request: Request): Observable< void > {
+        return this.programmeService.delete(request.params.id);
     }
 }
