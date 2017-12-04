@@ -37,17 +37,17 @@ import {Programme} from '../../../interfaces/programme';
                 })
             }
         },
-        description: 'Update one people',
-        notes: 'Update the people for the given id in path parameter and return it',
+        description: 'Update one program',
+        notes: 'Update the program for the given id in path parameter and return it',
         tags: ['api', 'programme']
     }
 })
 export class PutUpdateProgrammeRoute implements OnPut {
     /**
      * Class constructor
-     * @param _peopleService
+     * @param _programService
      */
-    constructor(private _peopleService: ProgrammeService) {
+    constructor(private _programService: ProgrammeService) {
     }
 
     /**
@@ -55,6 +55,6 @@ export class PutUpdateProgrammeRoute implements OnPut {
      * @param request
      */
     onPut(request: Request): Observable<Programme> {
-        return this._peopleService.update(request.params.id, request.payload);
+        return this._programService.update(request.params.id, request.payload);
     }
 }

@@ -27,7 +27,6 @@ export class ProgrammeDocumentService {
     }
 
     /**
-     * Call mongoose method, call toJSON on each result and returns People[] or undefined
      *
      * @return {Observable<Programme[] | void>}
      */
@@ -63,23 +62,23 @@ export class ProgrammeDocumentService {
                 )
             )
     }
-    create(person: Programme): Observable<Programme> {
+    create(programme: Programme): Observable<Programme> {
         return fromPromise(this._document.findOne({
-            nom: { $regex: new RegExp(person.nom, 'i') },
-            description: { $regex: new RegExp(person.description, 'i') }
+            nom: { $regex: new RegExp(programme.nom, 'i') },
+            description: { $regex: new RegExp(programme.description, 'i') }
         }))
             .pipe(
                 flatMap(_ => !!_ ?
                     _throw(
-                        new Error(`Programme with nom '${person.nom}' and description '${person.description}' already exists`)
+                        new Error(`Programme with nom '${programme.nom}' and description '${programme.description}' already exists`)
                     ) :
-                    fromPromise(this._document.create(person))
+                    fromPromise(this._document.create(programme))
                 ),
                 map((doc: MongooseDocument) => doc.toJSON() as Programme)
             );
     }
-    findByIdAndUpdate(id: string, person: Programme): Observable<Programme> {
-        return fromPromise(this._document.findByIdAndUpdate(id, person, { new: true }))
+    findByIdAndUpdate(id: string, programme: Programme): Observable<Programme> {
+        return fromPromise(this._document.findByIdAndUpdate(id, programme, { new: true }))
             .pipe(
                 flatMap((doc: MongooseDocument) =>
                     !!doc ?

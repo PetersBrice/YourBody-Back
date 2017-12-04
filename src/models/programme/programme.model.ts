@@ -3,7 +3,7 @@ import { Config } from '@hapiness/config';
 
 @MongoModel({
     adapter: 'mongoose',
-    collection: 'peoples',
+    collection: 'yourbody',
     options: Config.get('mongodb')
 })
 export class ProgrammeModel extends Model {
