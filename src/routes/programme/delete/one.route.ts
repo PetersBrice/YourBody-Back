@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { ProgrammeService } from '../../../services';
 
 import * as Joi from 'joi';
-import {Programme} from '../../../interfaces/programme';
 
 @Route({
     path: '/api/programme/{id}',
