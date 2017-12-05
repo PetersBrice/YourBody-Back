@@ -35,17 +35,17 @@ import {Programme} from '../../../interfaces/programme';
                 })
             }
         },
-        description: 'Create one people',
-        notes: 'Create a new people and return it',
+        description: 'Create one program',
+        notes: 'Create a new program and return it',
         tags: ['api', 'programme']
     }
 })
 export class PostCreateProgrammeRoute implements OnPost {
     /**
      * Class constructor
-     * @param _peopleService
+     * @param programmeService
      */
-    constructor(private _peopleService: ProgrammeService) {
+    constructor(private programmeService: ProgrammeService) {
     }
 
     /**
@@ -53,6 +53,6 @@ export class PostCreateProgrammeRoute implements OnPost {
      * @param request
      */
     onPost(request: Request): Observable<HapinessHTTPHandlerResponse> {
-        return this._peopleService.create(request.payload as Programme);
+        return this.programmeService.create(request.payload as Programme);
     }
 }

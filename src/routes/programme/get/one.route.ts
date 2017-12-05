@@ -26,23 +26,23 @@ import {Programme} from '../../../interfaces/programme';
                 })
             }
         },
-        description: 'Get one people',
-        notes: 'Returns one people for the given id in path parameter',
+        description: 'Get one program',
+        notes: 'Returns one program for the given id in path parameter',
         tags: ['api', 'programme']
     }
 })
 export class GetOneProgrammeRoute implements OnGet {
     /**
      * Class constructor
-     * @param _peopleService
+     * @param _programService
      */
-    constructor(private _peopleService: ProgrammeService) {}
+    constructor(private _programService: ProgrammeService) {}
 
     /**
      * OnGet implementation
      * @param request
      */
     onGet(request: Request): Observable<Programme> {
-        return this._peopleService.one(request.params.id);
+        return this._programService.one(request.params.id);
     }
 }

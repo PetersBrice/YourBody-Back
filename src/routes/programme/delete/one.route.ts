@@ -13,8 +13,8 @@ import * as Joi from 'joi';
                 id: Joi.string().required()
             }
         },
-        description: 'Delete people',
-        notes: 'Delete one people for the given id in path parameter',
+        description: 'Delete program',
+        notes: 'Delete a program for the given id in path parameter',
         tags: ['api', 'programme']
     }
 })

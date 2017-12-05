@@ -14,9 +14,6 @@ import {Programme} from '../../interfaces/programme';
 
 @Injectable()
 export class ProgrammeService {
-    // private property to store all people
-   // private _programme: Programme[];
-
     /**
      * Class constructor
      */
@@ -25,7 +22,7 @@ export class ProgrammeService {
     }
 
     /**
-     * Returns all existing people in the list
+     *
      *
      * @returns {Observable<Programme[]>}
      */
@@ -34,11 +31,11 @@ export class ProgrammeService {
     }
 
     /**
-     * Returns one people of the list matching id in parameter
      *
-     * @param {string} id of the people
      *
-     * @returns {Observable<People>}
+     * @param {string} id of the program
+     *
+     * @returns {Observable<Programme>}
      */
     one(id: string): Observable<Programme> {
         return this._programmeDocumentService.findById(id)
@@ -53,14 +50,13 @@ export class ProgrammeService {
     }
 
     /**
-     * Check if person already exists and add it in people list
+     * C
      *
-     * @param person to create
      *
      * @returns {Observable<HapinessHTTPHandlerResponse>}
      */
-    create(person: Programme): Observable<HapinessHTTPHandlerResponse> {
-        return this._programmeDocumentService.create(person)
+    create(programme: Programme): Observable<HapinessHTTPHandlerResponse> {
+        return this._programmeDocumentService.create(programme)
             .pipe(
                 catchError(e => _throw(Biim.conflict(e.message))),
                 map(_ => ({ response: _, statusCode: 201 }))
@@ -69,15 +65,12 @@ export class ProgrammeService {
 
 
     /**
-     * Update a person in people list
      *
-     * @param {string} id of the person to update
-     * @param person data to update
      *
      * @returns {Observable<Programme>}
      */
-    update(id: string, person: Programme): Observable<Programme> {
-        return this._programmeDocumentService.findByIdAndUpdate(id, person)
+    update(id: string, programme: Programme): Observable<Programme> {
+        return this._programmeDocumentService.findByIdAndUpdate(id, programme)
             .pipe(
                 catchError(e => _throw(Biim.preconditionFailed(e.message))),
                 flatMap(_ =>
@@ -89,9 +82,6 @@ export class ProgrammeService {
     }
 
     /**
-     * Deletes on person in people list
-     *
-     * @param {string} id of the person to delete
      *
      * @returns {Observable<any>}
      */
@@ -107,50 +97,5 @@ export class ProgrammeService {
             );
     }
 
-    /**
-     * Add person with good data in people list
-     *
-     * @param person to add
-     *
-     * @returns {Observable<People>}
-     *
-     * @private
-     */
-  /*  private _addPerson(person: People): Observable<HapinessHTTPHandlerResponse> {
-        person.id = this._createId();
-        this._programme = this._programme.concat(person);
 
-        return of({ response: person, statusCode: 201 });
-    }*/
-
-    /**
-     * Finds index of array for current person
-     *
-     * @param {string} id of the person to find
-     *
-     * @returns {Observable<number>}
-     *
-     * @private
-
-    private _findPeopleIndexOfList(id: string): Observable<number> {
-        return from(this._programme)
-            .pipe(
-                findIndex(_ => _.id === id),
-                flatMap(_ => _ > -1 ?
-                    of(_) :
-                    _throw(Biim.notFound(`People with id '${id}' not found`))
-                )
-            );
-    }
-
-    /**
-     * Creates a new id
-     *
-     * @returns {string}
-     *
-     * @private
-     */
-   /* private _createId(): string {
-        return `${new Date().getTime()}`;
-    }*/
 }

@@ -25,17 +25,17 @@ import {ProgrammeService} from '../../../services/programme/programme.service';
                 ).unique().min(1)
             }
         },
-        description: 'Get all people',
-        notes: 'Returns an array of people or 204',
+        description: 'Get all programs',
+        notes: 'Returns an array of programs or 204',
         tags: ['api', 'programme']
     }
 })
 export class GetAllProgrammeRoute implements OnGet {
     /**
      * Class constructor
-     * @param _peopleService
+     * @param _programService
      */
-    constructor(private _peopleService: ProgrammeService) {
+    constructor(private _programService: ProgrammeService) {
     }
 
     /**
@@ -43,6 +43,6 @@ export class GetAllProgrammeRoute implements OnGet {
      * @param request
      */
     onGet(request: Request): Observable<Programme[] | void> {
-        return this._peopleService.listAll();
+        return this._programService.listAll();
     }
 }
