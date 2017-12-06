@@ -15,6 +15,7 @@ import {Programme} from '../../../interfaces/programme';
                 id: Joi.string().required()
             },
             payload: Joi.object().keys({
+                id: Joi.string().required(),
                 nom: Joi.string().required(),
                 type: Joi.string().required(),
                 description: Joi.string().required(),
